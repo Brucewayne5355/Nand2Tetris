@@ -7,3 +7,25 @@ CHIP Not {
 
     PARTS:
     Nand(a=in , b=in , out=out );
+
+
+
+
+
+
+
+
+
+/**
+ * And gate: 
+ * out = 1 if (a == 1 and b == 1)
+ * out = 0 otherwise
+ */
+CHIP And {
+    IN a, b;
+    OUT out;
+    
+    PARTS:
+    Nand(a=a, b=b, out=nandOut);
+    Nand(a=nandOut, b=nandOut, out=out);
+}
