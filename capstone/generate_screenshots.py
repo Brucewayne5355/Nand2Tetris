@@ -12,7 +12,7 @@ sys.path.append(CAPSTONE_DIR)
 from run_hdl_tests import create_sim_screenshot, create_screen_screenshot
 from build_capstone import HackSimulator
 
-def generate_all_screenshots(k: int = 41):
+def generate_all_screenshots(k: int = 55):
     screenshots_dir = os.path.join(CAPSTONE_DIR, "screenshots")
     os.makedirs(screenshots_dir, exist_ok=True)
 
@@ -122,6 +122,6 @@ def generate_all_screenshots(k: int = 41):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-k", type=int, default=41)
+    parser.add_argument("-k", type=int, default=55)
     args = parser.parse_args()
     generate_all_screenshots(args.k)

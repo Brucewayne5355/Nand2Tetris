@@ -8,14 +8,14 @@
 ## Student Details & Parameters
 
 - **Student Name:** Ryan Narula
-- **Roll Number:** 2501420041 *(Template default: K = 41; configurable with any roll number via `build_capstone.py`)*
-- **Personal Number ($K$):** **41** (Last two digits of Roll No.)
-- **$K \bmod 3$ Feature:** $41 \bmod 3 = 2$ *(Duplicate label warnings; Assembler also supports $K \bmod 3 = 0$ symbols export and $K \bmod 3 = 1$ graceful line-numbered error reporting)*
-- **$K \bmod 4$ Box Width:** $41 \bmod 4 = 1$
+- **Roll Number:** 2501010155
+- **Personal Number ($K$):** **55** (Last two digits of Roll No.)
+- **$K \bmod 3$ Feature:** $55 \bmod 3 = 1$ *(Clear error reporting with line number e.g. "Line 93: invalid instruction" instead of crashing; Assembler also supports $K \bmod 3 = 0$ symbols export and $K \bmod 3 = 2$ duplicate label detection)*
+- **$K \bmod 4$ Box Width:** $55 \bmod 4 = 3$
 - **Box Dimensions:**
-  - **Start Row:** Row $41$ (Address: $\text{SCREEN} + 32 \times 41 = 16384 + 1312 = \mathbf{17696}$)
-  - **Height:** $\mathbf{20}$ rows (Row 41 through Row 60)
-  - **Width:** $16 \times ((41 \bmod 4) + 1) = 16 \times 2 = \mathbf{32}$ pixels ($2$ consecutive 16-bit words per row)
+  - **Start Row:** Row $55$ (Address: $\text{SCREEN} + 32 \times 55 = 16384 + 1760 = \mathbf{18144}$)
+  - **Height:** $\mathbf{20}$ rows (Row 55 through Row 74)
+  - **Width:** $16 \times ((55 \bmod 4) + 1) = 16 \times 4 = \mathbf{64}$ pixels ($4$ consecutive 16-bit words per row)
   - **Left Edge Offset:** Starts at word column 0 of each row.
 
 ---
@@ -89,14 +89,14 @@ All chips passed official Nand2Tetris hardware tests without errors:
 `Box.asm` implements an interactive event loop:
 1. **Polling Keyboard:** Reads $\text{RAM}[24576]$ (`KBD`). If non-zero, sets `@color = -1` (`0xFFFF`, black); if zero, sets `@color = 0` (`0x0000`, white).
 2. **Geometry Calculation:**
-   - Start address: $16384 + 32 \times K = 17696$.
+   - Start address: $16384 + 32 \times K = 18144$.
    - Height loop: Runs outer loop for 20 rows.
-   - Width loop: Runs inner loop for $W = (K \bmod 4) + 1 = 2$ words per row (32 pixels).
+   - Width loop: Runs inner loop for $W = (K \bmod 4) + 1 = 4$ words per row (64 pixels).
 3. **Screen Memory Update:** Writes `@color` to `RAM[col_addr]`, advances to the next word, and repeats.
 4. **Row Step:** Adds 32 words to `row_addr` to drop down to the exact position on the next vertical scanline.
 
 ### 4.2 Visual Verification
-- **Key Pressed:** 32-pixel wide black block rendered across rows 41 to 60.
+- **Key Pressed:** 64-pixel wide black block rendered across rows 55 to 74.
 - **Key Released:** Block is erased instantly to white background.
 
 ---
@@ -124,9 +124,9 @@ In the Hack instruction set specification, the ALU addition operation is defined
 
 ### Quick Modification Cheat-Sheet
 - **Move the Box Down by 10 Rows:**  
-  Change `@17696` to `@18016` (since $17696 + 32 \times 10 = 18016$).
+  Change `@18144` to `@18464` (since $18144 + 32 \times 10 = 18464$).
 - **Change Box Width:**  
-  In `Box.asm`, change `@col_count` initialization (e.g., change `@2` to `@3` for 48 pixels).
+  In `Box.asm`, change `@col_count` initialization (e.g., change `@4` to `@2` for 32 pixels).
 - **Make Box Taller:**  
   Change `@row_count` initialization (e.g., change `@20` to `@40` for 40 rows).
 - **Invert Screen Logic (Default Black, White on Press):**  

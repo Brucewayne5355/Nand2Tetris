@@ -118,12 +118,12 @@ def build_html_report():
 <div class="badge-card">
     <table>
         <tr><td class="label">Student Name:</td><td>Ryan Narula</td></tr>
-        <tr><td class="label">Roll Number:</td><td>2501420041</td></tr>
-        <tr><td class="label">Personal Number (K):</td><td><strong>41</strong> (Last 2 digits of Roll No.)</td></tr>
-        <tr><td class="label">K mod 3 (Assembler Feature):</td><td>41 mod 3 = <strong>2</strong> (Duplicate label warnings; also supports 0 and 1)</td></tr>
-        <tr><td class="label">K mod 4 (Width multiplier):</td><td>41 mod 4 = <strong>1</strong></td></tr>
-        <tr><td class="label">Box Dimensions:</td><td><strong>Height:</strong> 20 rows | <strong>Width:</strong> 32 pixels (2 words) | <strong>Start Row:</strong> Row 41</td></tr>
-        <tr><td class="label">Box Screen Address:</td><td><code>SCREEN + 32 * 41 = 16384 + 1312 = <strong>17696</strong></code></td></tr>
+        <tr><td class="label">Roll Number:</td><td>2501010155</td></tr>
+        <tr><td class="label">Personal Number (K):</td><td><strong>55</strong> (Last 2 digits of Roll No.)</td></tr>
+        <tr><td class="label">K mod 3 (Assembler Feature):</td><td>55 mod 3 = <strong>1</strong> (Line number error reporting; also supports 0 and 2)</td></tr>
+        <tr><td class="label">K mod 4 (Width multiplier):</td><td>55 mod 4 = <strong>3</strong></td></tr>
+        <tr><td class="label">Box Dimensions:</td><td><strong>Height:</strong> 20 rows | <strong>Width:</strong> 64 pixels (4 words) | <strong>Start Row:</strong> Row 55</td></tr>
+        <tr><td class="label">Box Screen Address:</td><td><code>SCREEN + 32 * 55 = 16384 + 1760 = <strong>18144</strong></code></td></tr>
     </table>
 </div>
 
@@ -178,12 +178,12 @@ A two-pass assembler in Python was developed:
 
 <h2>4. Part C – Box Program (Box.asm)</h2>
 <p>
-The program polls <code>RAM[24576]</code> (<code>KBD</code>). When a key is held down, it paints a black rectangle starting at Row 41 (RAM address 17696), 20 rows tall and 32 pixels wide (2 consecutive words per row). When released, it clears the area back to white.
+The program polls <code>RAM[24576]</code> (<code>KBD</code>). When a key is held down, it paints a black rectangle starting at Row 55 (RAM address 18144), 20 rows tall and 64 pixels wide (4 consecutive words per row). When released, it clears the area back to white.
 </p>
 
 <div class="screenshot-box">
     <img src="{img_box_pressed}" alt="Box Screen When Key Pressed">
-    <div class="screenshot-caption">Figure 6: Box Display When Key Pressed (Row 41 to Row 60, Width: 32px Black Box)</div>
+    <div class="screenshot-caption">Figure 6: Box Display When Key Pressed (Row 55 to Row 74, Width: 64px Black Box)</div>
 </div>
 
 <div class="screenshot-box">
@@ -205,8 +205,8 @@ Assembly failed with errors.</pre>
 <div class="viva-box">
     <strong>How to handle on-the-spot code modifications:</strong>
     <ul>
-        <li><strong>Move the box down:</strong> Update the base address <code>@17696</code>. To shift down by 10 rows, add <code>32 * 10 = 320</code> &rarr; change to <code>@18016</code>.</li>
-        <li><strong>Change width:</strong> Change <code>@col_count</code> initialization (e.g. from <code>@2</code> to <code>@3</code> for 48px).</li>
+        <li><strong>Move the box down:</strong> Update the base address <code>@18144</code>. To shift down by 10 rows, add <code>32 * 10 = 320</code> &rarr; change to <code>@18464</code>.</li>
+        <li><strong>Change width:</strong> Change <code>@col_count</code> initialization (e.g. from <code>@4</code> to <code>@2</code> for 32px).</li>
         <li><strong>Change height:</strong> Change <code>@row_count</code> initialization (e.g. from <code>@20</code> to <code>@30</code>).</li>
     </ul>
 </div>

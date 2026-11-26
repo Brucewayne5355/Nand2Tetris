@@ -1,11 +1,11 @@
 // Capstone Project: Make the Computer Draw a Box
-// Student Personal Number K = 41
+// Student Personal Number K = 55
 //
 // Box Specifications:
-// - Start Row: 41 (row address offset = 32 * 41 = 1312)
+// - Start Row: 55 (row address offset = 32 * 55 = 1760)
 // - Height: 20 rows
-// - Width: 32 pixels (2 16-bit words per row)
-// - Start Address: SCREEN + 1312 = 17696
+// - Width: 64 pixels (4 16-bit words per row)
+// - Start Address: SCREEN + 1760 = 18144
 //
 // Behavior:
 // - When any key is pressed (RAM[KBD] != 0), a black box is drawn.
@@ -36,7 +36,7 @@
     M=D
 
     // Initialize current row base address = SCREEN + 32 * K
-    @17696
+    @18144
     D=A
     @row_addr
     M=D
@@ -49,7 +49,7 @@
     D;JLE       // If row_count <= 0, return to main loop
 
     // Initialize column counter = width in words
-    @2
+    @4
     D=A
     @col_count
     M=D

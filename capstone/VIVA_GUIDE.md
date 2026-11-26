@@ -61,14 +61,14 @@ This guide prepares you to ace the 5-minute Viva. During the viva, you will be a
 - In `Box.asm`:
   Look for the start address initialization:
   ```asm
-  @{start_addr}   // e.g. @17696
+  @{start_addr}   // @18144 for K=55
   D=A
   @row_addr
   M=D
   ```
 - **Change:** Add $32 \times N$ to that number!
-  - To move down 10 rows: $17696 + 320 = 18016$. Change `@17696` to `@18016`.
-  - To move down 1 row: $17696 + 32 = 17728$. Change `@17696` to `@17728`.
+  - To move down 10 rows: $18144 + 320 = 18464$. Change `@18144` to `@18464`.
+  - To move down 1 row: $18144 + 32 = 18176$. Change `@18144` to `@18176`.
 - Re-run:
   `python3 assembler.py Box.asm`
 
@@ -77,12 +77,12 @@ This guide prepares you to ace the 5-minute Viva. During the viva, you will be a
 ### Task 2: "Make the box wider / narrower"
 - Look for the column count initialization:
   ```asm
-  @{width_words}  // e.g. @2
+  @{width_words}  // @4 for K=55 (64 pixels wide)
   D=A
   @col_count
   M=D
   ```
-- **Change:** Change `@2` to `@3` (to make it 48 pixels wide) or `@1` (to make it 16 pixels wide).
+- **Change:** Change `@4` to `@2` (to make it 32 pixels wide) or `@1` (to make it 16 pixels wide).
 
 ---
 
